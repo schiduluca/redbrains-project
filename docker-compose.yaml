@@ -1,0 +1,20 @@
+version: '3'
+services:
+  crypto_service:
+    build:
+      context: ./crypto-service-redbrains  # Replace with the actual path to the first Go service's Dockerfile directory
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8081
+    ports:
+      - "8081:8081"
+
+  api_service:
+    build:
+      context: ./api-service-redbrains  # Replace with the actual path to the first Go service's Dockerfile directory
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8082
+      - CRYPTO_SERVICE_PATH=crypto_service:8081
+    ports:
+      - "8082:8082"

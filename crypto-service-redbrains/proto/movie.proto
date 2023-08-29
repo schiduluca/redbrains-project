@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "/pb";
+
+
+service MovieService {
+  rpc HashMovie(MovieRequest) returns (MovieResponse) {}
+}
+
+message MovieRequest {
+  string name = 1;
+}
+
+message MovieResponse {
+  string hashed_name = 1;
+}
